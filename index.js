@@ -2,6 +2,14 @@
 // const num2 = parseInt(prompt('enter a number: '));
 // const operation = prompt('enter an operation: +, -, /, - ');
 
+const buttons = document.querySelectorAll('button')
+
+buttons.forEach((button) => {
+    button.addEventListener('click',(event)=>{
+        alert(event.target.className)
+    })
+})
+
 function operate(num1,num2,operation){
     let result = 0;
     switch (operation){
