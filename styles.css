@@ -24,11 +24,14 @@ body{
     height: 120px;
     gap: 5px;
     border-radius: 5px;
+    flex-grow: 1;
 }
 
 .input-display,
 .result-display{
-    padding: 5px;
+    font-size: 30px;
+    font-weight: bolder;
+    padding: 10px;
     text-align: right;
 }
 

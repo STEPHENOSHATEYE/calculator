@@ -6,7 +6,7 @@ const buttons = document.querySelectorAll('button')
 
 buttons.forEach((button) => {
     button.addEventListener('click',(event)=>{
-        alert(event.target.className)
+        // alert(event.target.className)
     })
 })
 
