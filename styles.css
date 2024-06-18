@@ -4,7 +4,6 @@ body{
     box-sizing: border-box;
     height: 100%;
     background-color: rgb(63, 48, 20);
-
 }
 
 #calculator-body{
@@ -27,8 +26,8 @@ body{
     flex-grow: 1;
 }
 
-.input-display,
-.result-display{
+.result-display,
+.operation-display{
     font-size: 30px;
     font-weight: bolder;
     padding: 10px;
