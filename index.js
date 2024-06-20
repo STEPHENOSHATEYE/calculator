@@ -16,9 +16,10 @@ buttons.forEach((button) => {
         handleKeyPress(keyValue);
         if (keyValue === 'equals' && shouldDisplayResult === true){
             result = operate(secondNumber,firstNumber,operator);
+            firstNumber = '';
             console.log(`${secondNumber}  ${firstNumber}  ${operator} and ${result}`)
             displayResult.textContent = (result);
-            shouldDisplayResult = false
+            shouldDisplayResult = false;
         }
     });
 })
@@ -28,23 +29,26 @@ function handleKeyPress(keyValue){
     if ((!isNaN(keyValue))){
         firstNumber += keyValue;
         displayResult.textContent = firstNumber;
-        console.log(`${secondNumber}  ${firstNumber}  ${operator}`)
+        console.log(`2nd ${secondNumber}  1st ${firstNumber}  op ${operator}`)
     }else if(['+','-','x','/'].includes(keyValue)){
         if (firstNumber === ''){
             secondNumber = result;
+            console.log('hi i workd')
+        }else{
+            displayResult.textContent = '';
+            operator = keyValue;
+            secondNumber = firstNumber;
+            firstNumber = '';
+            console.log(`$ 2nd ${secondNumber}  1st ${firstNumber}  po ${operator}`)
         }
-        displayResult.textContent = '';
-        operator = keyValue;
         addDecimal = true;
-        secondNumber = firstNumber;
-        isFilled = false;
-        firstNumber = '';
         shouldDisplayResult = true;
-        console.log(`${secondNumber}  ${firstNumber}  ${operator}`)
     }else if(keyValue === 'clear-all'){
         handleClearAll();
     }else if(keyValue === '.' && addDecimal === true){
         handleDecimal(keyValue);
+    }else if(keyValue === 'clear'){
+        handleClear();
     }
 }
 
@@ -58,14 +62,13 @@ function handleClearAll(){
     firstNumber = '';
     operator = '';
     secondNumber = '';
-    isFilled = false;
     shouldDisplayResult = false;
-    addDecimal = true;
-    result;
+    result = null;
 }
 
-function handleBackSpace(keyValue){
-
+function handleClear(){
+    firstNumber = firstNumber.slice(0,-1);
+    displayResult.textContent = firstNumber;
 }
 
 function operate(num1,num2,operation){
