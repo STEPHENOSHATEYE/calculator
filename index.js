@@ -6,40 +6,46 @@ let firstNumber = '';
 let operator = '';
 let secondNumber = '';
 let isFilled = false;
+let shouldDisplayResult = false;
+let addDecimal = true;
 
 buttons.forEach((button) => {
     button.addEventListener('click',(event)=>{
         let keyValue = event.target.className;
         handleKeyPress(keyValue);
         if (keyValue === 'equals'){
-            result = operate(secondNumber,firstNumber,operator);
-            displayResult.textContent = (result);
+            let result = operate(secondNumber,firstNumber,operator);
+            if (shouldDisplayResult === true){
+                displayResult.textContent = (result);
+            }
         }
-        displayOperation.textContent = (`${secondNumber}   ${operator}     ${firstNumber}`);
+        displayOperation.textContent = (`${secondNumber} ${operator} ${firstNumber}`);
         
     });
 })
 
 function handleKeyPress(keyValue){
     //check if the value of event is a number
-    if ((!isNaN(keyValue)||keyValue === '.')){
+    if ((!isNaN(keyValue))){
         firstNumber += keyValue;
     }else if(['+','-','x','/'].includes(keyValue)){
         if (isFilled === false){
             operator += keyValue;
         };
+        addDecimal = true;
         secondNumber += firstNumber;
         firstNumber = '';
         isFilled = true
-    }else{
-        
+        shouldDisplayResult = true;
+    }else if(keyValue === '.'&& addDecimal === true){
+        firstNumber += keyValue;
+        addDecimal = false
     };
 }
 
 function displayInput(value){
 
 }
-
 
 function operate(num1,num2,operation){
     let result = 0;
@@ -56,7 +62,7 @@ function operate(num1,num2,operation){
             result += divideNumbers(num1,num2);
         break;
 
-        case ('*'):
+        case ('x'):
             result += multiplyNumbers(num1,num2);
         break;
     }
