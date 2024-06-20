@@ -26,8 +26,7 @@ body{
     flex-grow: 1;
 }
 
-.result-display,
-.operation-display{
+.result-display{
     font-size: 30px;
     font-weight: bolder;
     padding: 10px;

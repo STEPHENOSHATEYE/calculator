@@ -1,26 +1,25 @@
 const buttons = document.querySelectorAll('button');
 const displayResult = document.querySelector('.result-display');
-const displayOperation = document.querySelector('.operation-display');
 
+displayResult.textContent = '0';
 let firstNumber = '';
 let operator = '';
 let secondNumber = '';
 let isFilled = false;
 let shouldDisplayResult = false;
 let addDecimal = true;
+let result;
 
 buttons.forEach((button) => {
     button.addEventListener('click',(event)=>{
         let keyValue = event.target.className;
         handleKeyPress(keyValue);
-        if (keyValue === 'equals'){
-            let result = operate(secondNumber,firstNumber,operator);
-            if (shouldDisplayResult === true){
-                displayResult.textContent = (result);
-            }
+        if (keyValue === 'equals' && shouldDisplayResult === true){
+            result = operate(secondNumber,firstNumber,operator);
+            console.log(`${secondNumber}  ${firstNumber}  ${operator} and ${result}`)
+            displayResult.textContent = (result);
+            shouldDisplayResult = false
         }
-        displayOperation.textContent = (`${secondNumber} ${operator} ${firstNumber}`);
-        
     });
 })
 
@@ -28,27 +27,50 @@ function handleKeyPress(keyValue){
     //check if the value of event is a number
     if ((!isNaN(keyValue))){
         firstNumber += keyValue;
+        displayResult.textContent = firstNumber;
+        console.log(`${secondNumber}  ${firstNumber}  ${operator}`)
     }else if(['+','-','x','/'].includes(keyValue)){
-        if (isFilled === false){
-            operator += keyValue;
-        };
+        if (firstNumber === ''){
+            secondNumber = result;
+        }
+        displayResult.textContent = '';
+        operator = keyValue;
         addDecimal = true;
-        secondNumber += firstNumber;
+        secondNumber = firstNumber;
+        isFilled = false;
         firstNumber = '';
-        isFilled = true
         shouldDisplayResult = true;
-    }else if(keyValue === '.'&& addDecimal === true){
-        firstNumber += keyValue;
-        addDecimal = false
-    };
+        console.log(`${secondNumber}  ${firstNumber}  ${operator}`)
+    }else if(keyValue === 'clear-all'){
+        handleClearAll();
+    }else if(keyValue === '.' && addDecimal === true){
+        handleDecimal(keyValue);
+    }
 }
 
-function displayInput(value){
+function handleDecimal(keyValue){
+    firstNumber += keyValue;
+    addDecimal = false;
+}
+
+function handleClearAll(){
+    displayResult.textContent = '0';
+    firstNumber = '';
+    operator = '';
+    secondNumber = '';
+    isFilled = false;
+    shouldDisplayResult = false;
+    addDecimal = true;
+    result;
+}
+
+function handleBackSpace(keyValue){
 
 }
 
 function operate(num1,num2,operation){
     let result = 0;
+
     switch (operation){
         case ('+'):
             result += addNumbers(num1,num2);
