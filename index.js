@@ -18,10 +18,9 @@ buttons.forEach((button) => {
             result = operate(secondNumber,firstNumber,operator);
             firstNumber = '';
             console.log(`${secondNumber}  ${firstNumber}  ${operator} and ${result}`)
-            displayResult.textContent = (result.toFixed(4));
+            displayResult.textContent = result.toString();
             shouldDisplayResult = false;
-            console.log(typeof(operate(secondNumber,firstNumber,operator)));
-
+            console.log(typeof(result.toString));
         }
     });
 })
