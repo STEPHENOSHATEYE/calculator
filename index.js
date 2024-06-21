@@ -18,8 +18,10 @@ buttons.forEach((button) => {
             result = operate(secondNumber,firstNumber,operator);
             firstNumber = '';
             console.log(`${secondNumber}  ${firstNumber}  ${operator} and ${result}`)
-            displayResult.textContent = (result);
+            displayResult.textContent = (result.toFixed(4));
             shouldDisplayResult = false;
+            console.log(typeof(operate(secondNumber,firstNumber,operator)));
+
         }
     });
 })
@@ -36,11 +38,11 @@ function handleKeyPress(keyValue){
             console.log('hi i workd')
         }else{
             displayResult.textContent = '';
-            operator = keyValue;
             secondNumber = firstNumber;
             firstNumber = '';
             console.log(`$ 2nd ${secondNumber}  1st ${firstNumber}  po ${operator}`)
         }
+        operator = keyValue;
         addDecimal = true;
         shouldDisplayResult = true;
     }else if(keyValue === 'clear-all'){
