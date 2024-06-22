@@ -1,25 +1,34 @@
+
 const buttons = document.querySelectorAll('button');
 const displayResult = document.querySelector('.result-display');
 
-displayResult.textContent = '0';
+displayResult.textContent = '0';//set display value to 0
+//the current number to get any number from user;
 let firstNumber = '';
+//the operator choosen by user;
 let operator = '';
+//the previous number to store store the current number number from user;
 let secondNumber = '';
+//condition to display result;
 let shouldDisplayResult = false;
+//condition to add decimals
 let addDecimal = true;
 let result;
 
+
+//add Event listener to all buttons
 buttons.forEach((button) => {
     button.addEventListener('click',(event)=>{
+        // store the value of button clicked by user;
         let keyValue = event.target.className;
+        // evaluate each button clicked;
         handleKeyPress(keyValue);
+        //condition to display result, should only disply result when shouldDisplayResult is true;
         if (keyValue === 'equals' && shouldDisplayResult === true){
             result = operate(secondNumber,firstNumber,operator);
             firstNumber = '';
-            console.log(`${secondNumber}  ${firstNumber}  ${operator} and ${result}`)
             displayResult.textContent = result.toString();
             shouldDisplayResult = false;
-            console.log(typeof(result.toString));
         }
     });
 })
@@ -29,16 +38,14 @@ function handleKeyPress(keyValue){
     if ((!isNaN(keyValue))){
         firstNumber += keyValue;
         displayResult.textContent = firstNumber;
-        console.log(`2nd ${secondNumber}  1st ${firstNumber}  op ${operator}`)
     }else if(['+','-','x','/'].includes(keyValue)){
         if (firstNumber === ''){
             secondNumber = result;
-            console.log('hi i workd')
+            ('hi i workd')
         }else{
             displayResult.textContent = '';
             secondNumber = firstNumber;
             firstNumber = '';
-            console.log(`$ 2nd ${secondNumber}  1st ${firstNumber}  po ${operator}`)
         }
         operator = keyValue;
         addDecimal = true;
@@ -49,6 +56,9 @@ function handleKeyPress(keyValue){
         handleDecimal(keyValue);
     }else if(keyValue === 'clear'){
         handleClear();
+    }else if (keyValue === '%'){
+        firstNumber = percentage(firstNumber);
+        
     }
 }
 
@@ -119,6 +129,8 @@ function divideNumbers(a,b){
     return a/b;
 }
 
-function percentage(a,b){
-    
+function percentage(number){
+    number = parseFloat(number);
+    percentage = number/100;
+    return percentage;
 }
