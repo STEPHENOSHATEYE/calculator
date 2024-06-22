@@ -58,7 +58,7 @@ function handleKeyPress(keyValue){
         handleClear();
     }else if (keyValue === '%'){
         firstNumber = percentage(firstNumber);
-        
+        displayResult.textContent = firstNumber;
     }
 }
 
