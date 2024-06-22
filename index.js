@@ -5,7 +5,6 @@ displayResult.textContent = '0';
 let firstNumber = '';
 let operator = '';
 let secondNumber = '';
-let isFilled = false;
 let shouldDisplayResult = false;
 let addDecimal = true;
 let result;
@@ -120,3 +119,6 @@ function divideNumbers(a,b){
     return a/b;
 }
 
+function percentage(a,b){
+    
+}
