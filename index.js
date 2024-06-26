@@ -1,8 +1,7 @@
-
 const buttons = document.querySelectorAll('button');
 const displayResult = document.querySelector('.result-display');
 
-displayResult.textContent = '0';//set display value to 0
+displayResult.textContent = '0'; //initialize display value to 0
 //the current number to get any number from user;
 let firstNumber = '';
 //the operator choosen by user;
@@ -26,7 +25,7 @@ buttons.forEach((button) => {
         //condition to display result, should only disply result when shouldDisplayResult is true;
         if (keyValue === 'equals' && shouldDisplayResult === true){
             result = operate(secondNumber,firstNumber,operator);
-            firstNumber = '';
+            firstNumber = ''; 
             displayResult.textContent = result.toString();
             shouldDisplayResult = false;
         }
@@ -78,6 +77,7 @@ function handleClearAll(){
 
 function handleClear(){
     firstNumber = firstNumber.slice(0,-1);
+    console.log(firstNumber)
     displayResult.textContent = firstNumber;
 }
 
@@ -131,6 +131,6 @@ function divideNumbers(a,b){
 
 function percentage(number){
     number = parseFloat(number);
-    percentage = number/100;
-    return percentage;
+    percent = number/100;
+    return percent;
 }
