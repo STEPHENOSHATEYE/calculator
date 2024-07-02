@@ -28,7 +28,7 @@ buttons.forEach((button) => {
         if (keyValue === 'equals' && shouldDisplayResult === true){
             result = operate(secondNumber,firstNumber,operator);
             firstNumber = ''; 
-            displayResult.textContent = result.toString().slice(0,displayLength);
+            displayResult.textContent = result.toString().slice(0,displayLength + 2);
             shouldDisplayResult = false;
         }
     });
