@@ -12,6 +12,8 @@ let secondNumber = '';
 let shouldDisplayResult = false;
 //condition to add decimals
 let addDecimal = true;
+//maximum length of digits to be displayed;
+let displayLength = 8;
 let result;
 
 
@@ -26,7 +28,7 @@ buttons.forEach((button) => {
         if (keyValue === 'equals' && shouldDisplayResult === true){
             result = operate(secondNumber,firstNumber,operator);
             firstNumber = ''; 
-            displayResult.textContent = result.toString();
+            displayResult.textContent = result.toString().slice(0,displayLength);
             shouldDisplayResult = false;
         }
     });
@@ -35,8 +37,12 @@ buttons.forEach((button) => {
 function handleKeyPress(keyValue){
     //check if the value of event is a number
     if ((!isNaN(keyValue))){
-        firstNumber += keyValue;
-        displayResult.textContent = firstNumber;
+        //display number if digits are less than display length
+        if (firstNumber.length <= displayLength){
+            firstNumber += keyValue;
+            displayResult.textContent = firstNumber;
+            console.log(firstNumber)
+        }
     }else if(['+','-','x','/'].includes(keyValue)){
         if (firstNumber === ''){
             secondNumber = result;
